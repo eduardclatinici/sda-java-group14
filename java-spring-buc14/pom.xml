@@ -5,12 +5,14 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.sda</groupId>
-    <artifactId>sda-course-sample</artifactId>
+    <artifactId>java-spring-buc14</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
 
     <modules>
         <module>spring-core</module>
+        <module>parent-boot-2</module>
+        <module>spring-data-jpa</module>
     </modules>
 
     <build>

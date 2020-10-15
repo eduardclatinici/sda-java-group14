@@ -9,10 +9,21 @@ public class DemoScanConfig {
         //create context
         ApplicationContext applicationContext = new AnnotationConfigApplicationContext(ScanConfig.class);
 
-        //get bean
+        //get component
         MyComponent myComponent = applicationContext.getBean("myComponent", MyComponent.class);
 
+        //get component with other component injected
+        MyComponentWithOtherComponentInjected myComponentWithOtherComponentInjected =
+                applicationContext.getBean("myComponentWithOtherComponentInjected",
+                        MyComponentWithOtherComponentInjected.class);
+
         //use bean
-        myComponent.complexOperations();
+        myComponent.complexOperation();
+
+        //empty line
+        System.out.println();
+
+        //use other bean
+        myComponentWithOtherComponentInjected.veryComplexOperations();
     }
 }

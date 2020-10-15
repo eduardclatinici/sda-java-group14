@@ -74,7 +74,7 @@ public class AppConfig {
         //try changing the id with a non existing id
         Optional<Book> savedBookOptional = bookRepository.findById(1L);
         Book book = null;
-        if(savedBookOptional.isPresent()){
+        if (savedBookOptional.isPresent()) {
             book = savedBookOptional.get();
         }
         System.out.println("Book found with optionalWithGet: " + book);

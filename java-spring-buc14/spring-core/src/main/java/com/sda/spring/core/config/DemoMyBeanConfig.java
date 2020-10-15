@@ -12,7 +12,17 @@ public class DemoMyBeanConfig {
         //get bean
         MyBean myBean = applicationContext.getBean("myBean", MyBean.class);
 
+        //get bean with other bean injected
+        MyBeanWithOtherBeanInjected myBeanWithOtherBeanInjected =
+                applicationContext.getBean("myBeanWithOtherBeanInjected", MyBeanWithOtherBeanInjected.class);
+
         //use bean
         myBean.complexOperation();
+
+        //empty line
+        System.out.println();
+
+        //use bean that uses a method from the injected bean
+        myBeanWithOtherBeanInjected.veryComplexOperations();
     }
 }

@@ -6,8 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class JavaBuc14SpringData {
 
-	public static void main(String[] args) {
-		SpringApplication.run(JavaBuc14SpringData.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(JavaBuc14SpringData.class, args);
+    }
 
 }

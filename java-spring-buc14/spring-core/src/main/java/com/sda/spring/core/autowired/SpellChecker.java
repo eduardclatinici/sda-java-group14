@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class SpellChecker {
 
-    public void checkSpelling(){
+    public void checkSpelling() {
         System.out.println("check spelling...");
     }
 }

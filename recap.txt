@@ -1,0 +1,83 @@
+repo with the exercises and the things showed during presentations: https://github.com/eduardclatinici/sda-java-group14
+
+Day 1 - Spring Core
+	
+	What is/Why Spring framework? Remember the standard built in factory house :D
+		- standard for web applications
+		- wide variety of tools
+		- lightweight
+		- easier and faster for the developers
+		- big community
+	
+	Spring Inversion of Control? = Dependency Injection
+
+	Spring core container modules:
+	
+		beans and core = offers a way to manipulate any kind of bean 
+		context = application context <- we can find all the beans/properties inside it, it manages the lifecycle of a bean
+		expression language = ways of call a method, getters/setters..
+		
+	Data container
+		JDBC - support for JDBC opperations
+		ORM - to map java objects to database entities
+		Transactions - manage all the transactions in the app
+	Web container
+	Test container
+	
+	Spring 
+	
+	(metadata + POJO) inside Spring Container = ready to use app
+	
+	Types of configuration metadata:
+	 annotations
+	 xml
+	 java code
+	 
+	How to create and find a bean
+	@Configuration + @Bean (a method that returns a new MyObject)
+	@Configuration + @ComponentScan({"com.sda.spring.core.config.scan"}) + @Component on our POJO
+	
+	inject beans in other beans:
+		@Autowired
+		types of @Autowired:
+			- constructor (recommended by spring)
+			- field
+			- setter
+	
+	scope:
+		@Scope(ConfigurableBeanFactory.SCOPE_SINGLETON) - default used by spring
+		@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
+	
+	qualifier:
+		@Qualifier - If we have an interface with 2 implementations we can tell Spring what implementation we want to use
+
+Demo 2 - Spring Boot and Spring Data
+
+	Why Spring Boot?
+		- stand-alone Spring Applications
+		- takes care of a lot of configurations
+		- starter dependencies
+		- embedded server = tomcat
+		- jar = Java Archive
+			-contains compiled Java source code, manifest file, configuration data, data files, images, audio
+			-Allows JRE to deploy an entire application including classes and the associated resources
+		- war = Web Application Resource or Web Application Archive
+			- contains servlet, JSP, XML, HTML, CSS and JavaScript files
+			- Allows testing and deploying a web application
+		- With Spring Boot there is no need to deploy the war
+
+	Spring Data
+		@Entity
+		
+useful links:
+
+check spring docs for more info: https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/
+maybe even this for a short and easy description of a bean and IoC : https://www.baeldung.com/spring-bean
+
+Day 2 - Spring Data
+
+useful links:
+all the spring boot starters: https://github.com/spring-projects/spring-boot/tree/master/spring-boot-project/spring-boot-starters
+jpa vs hibernate: https://www.javatpoint.com/jpa-vs-hibernate
+types of repositories: https://www.baeldung.com/spring-data-repositories
+baser Repository interface: https://docs.spring.io/spring-data/commons/docs/current/api/org/springframework/data/repository/Repository.html
