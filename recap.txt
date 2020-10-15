@@ -64,10 +64,17 @@ Demo 2 - Spring Boot and Spring Data
 		- war = Web Application Resource or Web Application Archive
 			- contains servlet, JSP, XML, HTML, CSS and JavaScript files
 			- Allows testing and deploying a web application
-		- With Spring Boot there is no need to deploy the war
+		- With Spring Boot there is no need to deploy the war as the server is included and configured
 
 	Spring Data
 		@Entity
+		@Table
+		@OneToOne, @OneToMany, @ManyToOne, @ManyToMany
+			@JoinColumn
+		@Repository, @CrudRepository, @PagingAndSortingRepository, @JpaRepository
+		
+		
+		
 		
 useful links:
 
@@ -80,4 +87,4 @@ useful links:
 all the spring boot starters: https://github.com/spring-projects/spring-boot/tree/master/spring-boot-project/spring-boot-starters
 jpa vs hibernate: https://www.javatpoint.com/jpa-vs-hibernate
 types of repositories: https://www.baeldung.com/spring-data-repositories
-baser Repository interface: https://docs.spring.io/spring-data/commons/docs/current/api/org/springframework/data/repository/Repository.html
+base Repository interface: https://docs.spring.io/spring-data/commons/docs/current/api/org/springframework/data/repository/Repository.html
