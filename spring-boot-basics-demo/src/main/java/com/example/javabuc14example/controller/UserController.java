@@ -1,12 +1,18 @@
 package com.example.javabuc14example.controller;
 
 import com.example.javabuc14example.domain.User;
+import com.example.javabuc14example.dto.UserDTO;
 import com.example.javabuc14example.repository.UserRepository;
 import com.example.javabuc14example.service.UserService;
+import com.example.javabuc14example.transformer.UserTransformer;
 import org.apache.catalina.core.ApplicationContext;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
+import static java.util.stream.Collectors.toList;
 
 @RestController
 @RequestMapping("/users")
@@ -14,10 +20,12 @@ public class UserController {
     
     private final UserRepository userRepository;
     private final UserService userService;
+    private final UserTransformer userTransformer;
 
-    public UserController(UserRepository userRepository, UserService userService) {
+    public UserController(UserRepository userRepository, UserService userService, UserTransformer userTransformer) {
         this.userRepository = userRepository;
         this.userService = userService;
+        this.userTransformer = userTransformer;
     }
 //CRUD
     //C- Create POST
@@ -26,8 +34,10 @@ public class UserController {
     //D- Delete DELETE
 
     @GetMapping
-    public List<User> findAll(){
-        return userRepository.findAll();
+    public ResponseEntity<List<UserDTO>> findAll(){
+        return new ResponseEntity<>(userRepository.findAll().stream()
+                .map(userTransformer::toDTO)
+                .collect(toList()), HttpStatus.OK);
     }
 
     @GetMapping("/{username}")

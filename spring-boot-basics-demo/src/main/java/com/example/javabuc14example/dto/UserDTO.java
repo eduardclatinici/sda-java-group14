@@ -1,7 +1,11 @@
 package com.example.javabuc14example.dto;
 
 import com.example.javabuc14example.domain.User;
+import lombok.Builder;
+import lombok.Value;
 
+@Builder
+@Value
 public class UserDTO {
 
     private String firstName;
