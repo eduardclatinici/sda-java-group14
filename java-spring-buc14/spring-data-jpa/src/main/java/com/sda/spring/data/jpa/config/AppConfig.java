@@ -11,6 +11,8 @@ import com.sda.spring.data.jpa.exception.NotFoundException;
 import com.sda.spring.data.jpa.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.domain.Page;
@@ -37,6 +39,9 @@ public class AppConfig {
     @Autowired
     private PersonRepository personRepository;
 
+    @Autowired
+    private ConfigurableApplicationContext context;
+
     @Bean
     public CommandLineRunner testData() {
         return args -> {
@@ -45,6 +50,8 @@ public class AppConfig {
 //            testPagination();
 //            testSorting();
             testPaginationAndSorting();
+            //stop runner as soon as it finishes the job
+            System.exit(SpringApplication.exit(context));
         };
     }
 
@@ -123,7 +130,7 @@ public class AppConfig {
         //split the elements in pages of 1 element per page and take the second page
         //  if we look at the result it will give us the person with the name "C" and it might seem weird at first
         //  because the person with the name "C" should be on the first page
-        //  but JPA thinks that we already "took" the first page at line 122 of this file
+        //  but JPA thinks that we already "took" the first page at line 129 of this file
         //  and that the second page it is considered to be first and the third page is considered to be the second
         //  so if we split in pages of 1 element we will get: page 0 : A, page 1: B, page 2: C etc
         //  and if we consider page 0 to be already consumed that leaves page 1 as page 0 page 2 as page 1
