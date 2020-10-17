@@ -1,9 +1,6 @@
 package com.sda.spring.data.jpa.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
@@ -20,6 +17,7 @@ public class Person {
 
     private BigDecimal salary;
 
+    //TODO: add some validations like @Email or @NotNull
     private String email;
 
     public Person(String name, Integer age, BigDecimal salary, String email) {

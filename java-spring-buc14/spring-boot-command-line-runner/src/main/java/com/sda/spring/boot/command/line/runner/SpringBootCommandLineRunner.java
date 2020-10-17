@@ -35,4 +35,16 @@ public class SpringBootCommandLineRunner implements CommandLineRunner {
         System.out.println("And close the runner");
         SpringApplication.exit(context);
     }
+
+    //ETL Application
+    //Extract
+    //take data from another service
+    //take data from service 2
+    //take data from service 3
+    //Transform
+    //combine data from all three services after some pre-defined rules
+    // and filter out some of them based on two specific fields (one from service 2 and one from servie 3)
+    //Load
+    //save in database
+    //print
 }

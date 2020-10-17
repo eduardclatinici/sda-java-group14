@@ -50,8 +50,14 @@ Day 1 - Spring Core
 	
 	qualifier:
 		@Qualifier - If we have an interface with 2 implementations we can tell Spring what implementation we want to use
+		
+useful links:
 
-Demo 2 - Spring Boot and Spring Data
+check spring docs for more info: https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/
+maybe even this for a short and easy description of a bean and IoC : https://www.baeldung.com/spring-bean
+
+
+Day 2 - Spring Boot and Spring Data
 
 	Why Spring Boot?
 		- stand-alone Spring Applications
@@ -65,26 +71,43 @@ Demo 2 - Spring Boot and Spring Data
 			- contains servlet, JSP, XML, HTML, CSS and JavaScript files
 			- Allows testing and deploying a web application
 		- With Spring Boot there is no need to deploy the war as the server is included and configured
+		
+	Spring CommandLineRunner
+		- a simple Spring Boot interface with a run method
+		- use it when you want to execute some piece of code exactly before the application startup completes
+		- Spring Boot will automatically call the run method of all beans implementing this interface after the application context has been loaded
+		- we can have only one (use spring.main.web-application-type=NONE if not a web application) or multiple (use @Order annotation)
+		- generally used for etl applications (Extract, Transform, Load)
+		- general procedure of copying data from one or more sources into a destination system which represents the data differently from the source(s) or in a different context than the source(s)
 
 	Spring Data
+		ORM = Object-Relational-Mapping, concept, technique,  the approach of mapping objects to relational tables
+			JPA = the EE standard specification for ORM in Java EE.
+			Hibernate = ORM implementation, an implementation of the JPA spec, which itself is part of the Java EE spec
+			Advantages: 
+				- Let’s business code access objects rather than DB tables.
+				- Hides details of SQL queries from OO logic.
+				- Based on JDBC 'under the hood.'
+				- No need to deal with the database implementation (abstract away some of the complexity of interfacing with a database)
+				- Entities based on business concepts rather than database structure.
+				- generate queries using java
+				- support for transactions, connection pooling etc..
 		@Entity
-		@Table
+			The tables will be created after our domain classes. 
+		@Table (to overwrite the table name that this entity will map)
 		@OneToOne, @OneToMany, @ManyToOne, @ManyToMany
 			@JoinColumn
 		@Repository, @CrudRepository, @PagingAndSortingRepository, @JpaRepository
+		provides basic CRUD, Paging and Sorting queries 
+			and also lets us add our own custom queries inside repositories:
+				- using @Query annotations (native vs jpql)
+				- using dynamic query derivation from repository method names (findAllByNameAndSurname..etc)
 		
-		
-		
-		
-useful links:
-
-check spring docs for more info: https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/
-maybe even this for a short and easy description of a bean and IoC : https://www.baeldung.com/spring-bean
-
-Day 2 - Spring Data
 
 useful links:
 all the spring boot starters: https://github.com/spring-projects/spring-boot/tree/master/spring-boot-project/spring-boot-starters
 jpa vs hibernate: https://www.javatpoint.com/jpa-vs-hibernate
 types of repositories: https://www.baeldung.com/spring-data-repositories
 base Repository interface: https://docs.spring.io/spring-data/commons/docs/current/api/org/springframework/data/repository/Repository.html
+derived queries: https://www.baeldung.com/spring-data-derived-queries
+native vs jpql: https://www.baeldung.com/spring-data-jpa-query

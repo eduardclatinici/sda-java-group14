@@ -15,11 +15,13 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Optional;
@@ -43,6 +45,7 @@ public class AppConfig {
     private ConfigurableApplicationContext context;
 
     @Bean
+    @Order(1)
     public CommandLineRunner testData() {
         return args -> {
 //            testBookPlainRepository();
@@ -51,7 +54,21 @@ public class AppConfig {
 //            testSorting();
             testPaginationAndSorting();
             //stop runner as soon as it finishes the job
-            System.exit(SpringApplication.exit(context));
+//            System.exit(SpringApplication.exit(context));
+        };
+    }
+
+    @Bean
+    @Order(2)
+    public CommandLineRunner testData1() {
+        return args -> {
+//            testBookPlainRepository();
+            testAssociations();
+//            testPagination();
+//            testSorting();
+//            testPaginationAndSorting();
+            //stop runner as soon as it finishes the job
+//            System.exit(SpringApplication.exit(context));
         };
     }
 
@@ -83,6 +100,8 @@ public class AppConfig {
         Book book = null;
         if (savedBookOptional.isPresent()) {
             book = savedBookOptional.get();
+        } else {
+            throw new NotFoundException("book not found");
         }
         System.out.println("Book found with optionalWithGet: " + book);
     }

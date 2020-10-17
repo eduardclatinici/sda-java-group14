@@ -31,6 +31,7 @@ public class Father {
     )
     @JoinColumn(name = "father_id")
     private List<Son> sons = new ArrayList<>();
+    //TODO: create another association relation (e.g. @OneToOne - bidrectional mapping, @ManyToMany)
 
     public Father(Long id, String name, List<Son> sons) {
         this.id = id;
