@@ -16,6 +16,8 @@
         <module>spring-boot-command-line-runner</module>
         <module>spring-mvc-jsp</module>
         <module>spring-boot-mvc-jsp</module>
+        <module>spring-boot-thymeleaf</module>
+        <module>spring-boot-mvc-security</module>
     </modules>
 
     <build>
