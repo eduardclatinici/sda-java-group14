@@ -1,0 +1,16 @@
+<p>catalogue works!</p>
+<div>
+  <table>
+    <thead>
+      <th>Product Name</th>
+      <th>Product Description</th>
+      <th>Seller name</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of products"></tr>
+        <td>{{product.name}}</td>
+        <td>{{product.description}}</td>
+        <td>{{product.sellerName}}</td>
+    </tbody>
+  </table>
+</div>

@@ -111,3 +111,113 @@ types of repositories: https://www.baeldung.com/spring-data-repositories
 base Repository interface: https://docs.spring.io/spring-data/commons/docs/current/api/org/springframework/data/repository/Repository.html
 derived queries: https://www.baeldung.com/spring-data-derived-queries
 native vs jpql: https://www.baeldung.com/spring-data-jpa-query
+3 Spring MVC
+
+Day 
+Model-View-Controller (MVC) Architecture
+
+	Model 		-Business objects or domain objects
+				-POJOs & JavaBeans
+				
+	View 		-Visual representation of model
+				-JSP, JSF
+				
+	Controller	-Navigation Flow & Model-View integration
+				-Servlets
+
+	Spring's web MVC framework is, like many other web MVC frameworks: 
+		- request-driven
+		- designed around a central Servlet that dispatches requests to controllers and offers other funcionalities
+		
+	DispatcherServlet:
+		- "front controller"
+		- is an actual servlet (inherits HttpServlet base class)
+		- is declared in web.xml (with xml or programatically by implementing WebApplicationInitializer = 
+				interface provided by Spring MVC that ensures your code-based configuration is 
+				detected and automatically used to initialize any Servlet 3 container.)
+		- need to configure the various beans used by Spring MVC (or not -> default config)
+		- we can map the requests that we want the DispatcherServlet to handle 
+		
+	If in the web.xml we define <servlet-name>golfing</servlet-name>, then upon initialization of a DispatcherServlet
+			Spring MVC looks for a file named [servlet-name]-servlet.xml(golfing-servlet.xml)in the WEB-INF directory
+			
+	WebApplicationContext vs ApplicationContext:
+	
+		- extension
+		- extra features necessary for web applications
+		- capable of resolving themes and know which servlet is associated with
+
+Special beans in WebApplicationContext:
+	
+	HandlerMapping - maps incoming requests to handlers and a list of pre- and post-processors (handler interceptors) based on some criteria 
+						(most popular implementation supports annotated controllers)
+						
+	HandlerAdapter - helps the DispatcherServlet to invoke a handler mapped to a request regardless of the handler is actually invoked.
+						For example, invoking an annotated controller requires resolving various annotations. 
+						Thus the main purpose of a HandlerAdapter is to shield the DispatcherServlet from such details.
+	
+	HandlerExceptionResolver - maps exceptions to views also allowing for more complex exception handling code.
+	
+	ViewResolver - resolves logical String-based view names to actual View types.
+	
+	LocaleResolver - resolves the locale a client is using, in order to be able to offer internationalized views
+	
+	ThemeResolver - Resolves themes your web application can use, for example, to offer personalized layouts
+	
+	MultipartResolver - Parses multi-part requests for example to support processing file uploads from HTML forms.
+	
+	FlashMapManager - Stores and retrieves the "input" and the "output" FlashMap that can be used to pass attributes from 
+						one request to another, usually across a redirect.
+						
+	Annotations:
+		- @Controller
+		- @RequestMapping(value = "/path", method = RequestMethod.POST, consumes="application/json", produces="application/json")
+		- @ResponseBody = return type should be written straight to the HTTP response body (and not placed in a Model, or interpreted as a view name)
+		- @RequestBody
+		- "/path/{id}" -> @PathVariable Integer id
+		- "/path?id=1" -> @RequestParam
+		- @GetMapping, @PostMapping, @PutMapping, @DeleteMapping
+		
+	
+https://docs.spring.io/spring-framework/docs/3.2.x/spring-framework-reference/html/mvc.html
+
+	
+Day 4 Thymeleaf & Spring Security
+
+	What is Thymeleaf?
+		Thymeleaf is a modern server-side Java template engine for both web and standalone environments
+		Thymeleaf's main goal is to bring elegant natural templates to your development workflow 
+			— HTML that can be correctly displayed in browsers and also work as static prototypes
+		Thymeleaf offers a set of Spring integrations that allow you to use it as a full-featured substitute for JSP in Spring MVC applications:
+			- Make the mapped methods in your Spring MVC @Controller objects forward to templates managed by Thymeleaf, exactly like you do with JSPs.
+			- Use Spring Expression Language (Spring EL) instead of OGNL in your templates
+			- Create forms in your templates that are completely integrated with your form-backing beans
+			- Display internationalization messages from messages files managed by Spring
+			
+	Please check these two urls:
+	
+		- SPEL: https://www.thymeleaf.org/doc/articles/standarddialect5minutes.html
+		- Thymeleaf + Spring: https://www.thymeleaf.org/doc/tutorials/2.1/thymeleafspring.html#views-and-view-resolvers
+	
+	They contain all the info that you need to know about thymeleaf and thymeleaf with spring
+	
+	What is Spring Security?
+		Spring Security is a powerful and highly customizable authentication and access-control framework
+		Spring Security is a framework that focuses on providing both authentication and authorization to Java applications
+		It is the de-facto standard for securing Spring-based applications.
+		
+	Features:
+		- Comprehensive and extensible support for both Authentication and Authorization
+		- Protection against attacks like session fixation, clickjacking, cross site request forgery (csrf), etc
+		- Servlet API integration
+		- Optional integration with Spring Web MVC
+		- much more
+		
+	config class must extend WebSecurityConfigurerAdapter
+		@Override void configure(HttpSecurity http) for basic auth and void configure(AuthenticationManagerBuilder auth) for in memory auth
+		
+	Annotations:
+		@EnableWebSecurity
+		
+	useful links: https://spring.io/projects/spring-security#overview
+		(check the learn tab)
