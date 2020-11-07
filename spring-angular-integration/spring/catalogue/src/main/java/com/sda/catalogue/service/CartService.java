@@ -16,7 +16,7 @@ public class CartService {
 
     private final RestTemplate restTemplate = new RestTemplate();
 
-    private static final String CART_URL = "http://localhost:8081/carts";
+    private static final String CART_URL = "http://localhost:8081/api/carts";
 
     //TODO: addItemToCartDTO quantity < available quantity in Product
     // (get Product with product Repo with productID from AddItemTocartDTO) logic

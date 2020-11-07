@@ -29,13 +29,20 @@ public class UserController {
         return this.userService.getUsers();
     }
 
+    //@RequestMapping(value = "/users")
     @PostMapping("/{buyer_username}/add-to-cart")
+//    @RequestMapping(value = "/users/{buyer_username}/add-to-cart", method = RequestMethod.POST)
+    //http://localhost:8080/users/{buyer_username}/add-to-cart
+    //http://localhost:8080/users/asdfag/add-to-cart
+    //http://localhost:8080/users/edi/add-to-cart
     public ResponseEntity<Void> addProductToBuyersCart(@PathVariable("buyer_username") String buyerUsername, @RequestBody AddItemToCartDTO addItemToCartDTO){
        ResponseEntity<Void> response = cartService.addToCart(buyerUsername, addItemToCartDTO);
        return ResponseEntity.status(response.getStatusCode()).build();
     }
 
+    //@RequestMapping(value = "/users")
     @GetMapping("/{buyer_username}/cart")
+    //http://localhost:8080/users/{buyer_username}/cart
     public ResponseEntity<CartDTO> getCartByUsername(@PathVariable(name = "buyer_username") String buyerUsername){
         return cartService.getCartByUsername(buyerUsername);
     }

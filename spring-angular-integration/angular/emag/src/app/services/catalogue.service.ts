@@ -1,20 +1,18 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpResponse} from '@angular/common/http';
-import {ProductModel} from "../model/ProductModel";
-import {Observable} from "rxjs";
+import {ProductModel} from '../model/ProductModel';
+import { Observable, throwError } from 'rxjs';
+import { catchError, retry } from 'rxjs/operators';
 
-
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class CatalogueService {
 
-  private CATALOGUE_URL = "localhost:8080/products";
+  private CATALOGUE_URL = '/api/products';
 
   constructor(private http: HttpClient) {
   }
 
-  getAllProducts():Observable<HttpResponse<ProductModel[]>>{
-    return this.http.get<ProductModel[]>(this.CATALOGUE_URL, { observe: 'response' });
+  getAllProducts(): Observable<ProductModel[]>{
+    return this.http.get<ProductModel[]>(this.CATALOGUE_URL);
   }
 }
