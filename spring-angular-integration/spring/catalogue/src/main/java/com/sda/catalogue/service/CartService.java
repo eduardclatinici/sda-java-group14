@@ -2,6 +2,7 @@ package com.sda.catalogue.service;
 
 import com.sda.catalogue.dto.AddItemToCartDTO;
 import com.sda.catalogue.dto.CartDTO;
+import com.sda.catalogue.projection.ProductProjection;
 import com.sda.catalogue.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -27,5 +28,9 @@ public class CartService {
 
     public ResponseEntity<CartDTO> getCartByUsername(String buyerUsername) {
         return restTemplate.getForEntity(CART_URL+"/"+buyerUsername, CartDTO.class);
+    }
+
+    public Integer getQuantityForProductId(Long productId){
+        return productRepository.findProductQuantityByProductId(productId).getQuantity();
     }
 }
